@@ -52,6 +52,7 @@ for i in range(10000):
 
     gradients = tape.gradient(loss, model.trainable_variables)
     optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+    losses.append(loss.numpy())
 
 # Prediction
 time_test = np.linspace(0, 300, num_samples)
@@ -81,11 +82,11 @@ fig.tight_layout()
 plt.title('Gauge Block Thickness and Temperature over Time')
 
 # Plot loss function
-fig, ax = plt.subplots(figsize=(8, 6))
-ax.plot(losses)
-ax.set_xlabel('Iteration')
-ax.set_ylabel('Loss')
-ax.set_title('Loss Function')
-ax.grid(True)
+fig, ax3 = plt.subplots(figsize=(8, 6))
+ax3.plot(losses)
+ax3.set_xlabel('Iteration')
+ax3.set_ylabel('Loss')
+ax3.set_title('Loss Function')
+ax3.grid(True)
 plt.legend()
 plt.show()
